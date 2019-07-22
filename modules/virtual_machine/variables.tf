@@ -14,8 +14,7 @@ variable "resource_group_name" {
 }
 
 variable "network_interface_ids" {
-  type = "list"
-  default     = [""]
+  default     = ""
   description = "(Required) Specifies the list of resource IDs for the network interfaces associated with the virtual machine."
 }
 

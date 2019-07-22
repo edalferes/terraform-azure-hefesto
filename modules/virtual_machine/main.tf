@@ -2,7 +2,7 @@ resource "azurerm_virtual_machine" "virtual_machine" {
   name                          = "${var.name}-vm"
   location                      = "${var.location}"
   resource_group_name           = "${var.resource_group_name}"
-  network_interface_ids         = "${var.network_interface_ids}"
+  network_interface_ids         = "[${var.network_interface_ids}]"
   vm_size                       = "${var.vm_size}"
   delete_os_disk_on_termination = "${var.delete_os_disk_on_termination}"
 
