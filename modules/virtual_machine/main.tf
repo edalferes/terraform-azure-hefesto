@@ -2,7 +2,7 @@ resource "azurerm_virtual_machine" "virtual_machine" {
   name                          = "${var.name}-vm"
   location                      = "${var.location}"
   resource_group_name           = "${var.resource_group_name}"
-  network_interface_ids         = ["${var.network_interface_ids}"]
+  network_interface_ids         = "${var.network_interface_ids}"
   vm_size                       = "${var.vm_size}"
   delete_os_disk_on_termination = "${var.delete_os_disk_on_termination}"
 
@@ -26,6 +26,12 @@ resource "azurerm_virtual_machine" "virtual_machine" {
   }
   os_profile_linux_config {
     disable_password_authentication = "${var.os_profile_linux_config_disable_password}"
+    
+    ssh_keys {
+      path     = "/home/${var.os_profile_admin_username}/.ssh/authorized_keys"
+      key_data = "${var.ssh_keys_path}"
+    }
   }
+  
   tags = "${var.tags}"
 }
