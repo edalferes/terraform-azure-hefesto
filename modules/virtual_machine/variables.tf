@@ -78,11 +78,11 @@ variable "os_profile_computer_name" {
 }
 
 variable "os_profile_admin_username" {
-  default     = "terraformTest"
+  default     = ""
   description = "(Required) Specifies the name of the administrator account."
 }
 variable "os_profile_admin_password" {
-  default     = "V0k4pg7w"
+  default     = ""
   description = "(Required for Windows, Optional for Linux) Specifies the password of the administrator account."
 }
 
