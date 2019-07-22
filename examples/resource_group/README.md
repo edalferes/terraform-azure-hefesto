@@ -1,14 +1,24 @@
-# Rerource Group
+
+# Resource Group
 
 This folder contain examples for create *resource group in azure*
 
-```
-module "resource_group" {
-  source  = "edalferes/recources/azure//modules/resource_group"
-  version = "0.1.0"
+# Usage
 
-  name     = "${var.resource_group_name}"
-  location = "${var.location}"
-  tags     = "${var.tags}"
-}
+To run this example you need to execute:
+
+``` bash
+$ terraform init
+$ terraform plan
+$ terraform apply
 ```
+
+Run `terraform destroy` when you don't need these resources.
+
+## Outputs
+
+| Name                              | Description                                              |
+|-----------------------------------|----------------------------------------------------------|
+| name                              | Recource group name                                      |
+| location                          | Resource location                                        |
+| tags                              | Tags to definition resources                             |
