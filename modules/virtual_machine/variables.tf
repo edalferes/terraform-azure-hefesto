@@ -90,10 +90,6 @@ variable "os_profile_linux_config_disable_password" {
   description = "(Required) Specifies whether password authentication should be disabled. If set to false, an admin_password must be specified."
 }
 
-variable "ssh_keys_path" {
-  default     = ""
-  description = " (Required) The path of the destination file on the virtual machine"
-}
 variable "ssh_keys_data" {
   default     = ""
   description = "(Required) The Public SSH Key which should be written to the path defined above."
