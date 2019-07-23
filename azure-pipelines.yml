@@ -15,10 +15,5 @@ steps:
   displayName: 'Build image docker'
 
 - script: |
-    docker run $(imageName)
-  env:
-    ARM_CLIENT_ID: $(spClientId) 
-    ARM_CLIENT_SECRET: $(spClientSecret)
-    ARM_SUBSCRIPTION_ID: $(spSubscriptionId)
-    ARM_TENANT_ID: $(spTenantId)
+    docker run $(imageName) -e ARM_CLIENT_ID=$(spClientId) -e ARM_CLIENT_SECRET=$(spClientSecret) -e ARM_SUBSCRIPTION_ID=$(spSubscriptionId) -e ARM_TENANT_ID=$(spTenantId)
   displayName: 'Run docker test'
