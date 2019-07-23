@@ -16,4 +16,9 @@ steps:
 
 - script: |
     docker run -e ARM_CLIENT_ID=$(spClientId) -e ARM_CLIENT_SECRET=$(spClientSecret) -e ARM_SUBSCRIPTION_ID=$(spSubscriptionId) -e ARM_TENANT_ID=$(spTenantId) $(imageName)
+  env:
+    ARM_CLIENT_ID: $(spClientId)
+    ARM_CLIENT_SECRET: $(spClientSecret)
+    ARM_SUBSCRIPTION_ID: $(spSubscriptionId)
+    ARM_TENANT_ID: $(spTenantId)
   displayName: 'Run docker test'
