@@ -21,4 +21,10 @@ RUN unzip terraform_0.12.5_linux_amd64.zip && mv terraform /usr/local/bin && rm 
 RUN mkdir /go/src/terraform-azure-resources
 COPY . /go/src/terraform-azure-resources
 
-CMD cd /go/src/terraform-azure-resources/test && go test -v
+# Download packages
+RUN cd /go/src/terraform-azure-resources/test && dep ensure -v
+
+# Define workdir test
+WORKDIR /go/src/terraform-azure-resources/test
+
+CMD go test
