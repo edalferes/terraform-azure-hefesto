@@ -2,8 +2,10 @@ FROM golang:1.12.7-stretch
 
 LABEL MAINTAINER Edmilson Alferes <edmilson.alferes@gmail.com>
 
-# Install azure-cli
-RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+ENV ARM_CLIENT_ID="00000000-0000-0000-0000-000000000000"
+ENV ARM_CLIENT_SECRET="00000000-0000-0000-0000-000000000000"
+ENV ARM_SUBSCRIPTION_ID="00000000-0000-0000-0000-000000000000"
+ENV ARM_TENANT_ID="00000000-0000-0000-0000-000000000000"
 
 # Install packages
 RUN apt-get update && apt-get install zip -y
