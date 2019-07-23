@@ -20,3 +20,5 @@ RUN unzip terraform_0.12.5_linux_amd64.zip && mv terraform /usr/local/bin && rm 
 # Copy source code
 RUN mkdir /go/src/terraform-azure-resources
 COPY . /go/src/terraform-azure-resources
+
+CMD go test ./...

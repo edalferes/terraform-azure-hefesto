@@ -12,3 +12,13 @@ variables:
 steps:
 - script: |
     docker build -t $(imageName) .
+  displayName: 'Build image docker'
+
+- script: |
+    docker run $(imageName)
+  env:
+    ARM_CLIENT_ID: $(spClientId) 
+    ARM_CLIENT_SECRET: $(spClientSecret)
+    ARM_SUBSCRIPTION_ID: $(spSubscriptionId)
+    ARM_TENANT_ID: $(spTenantId)
+  displayName: 'Run docker test'
