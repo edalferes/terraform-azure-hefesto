@@ -1,11 +1,11 @@
 variable "name" {
-  default     = ""
-  description = "Recource group name"
+  default     = "test-recource-group"
+  description = "Resource group name"
 }
 
 variable "location" {
-  default     = ""
-  description = "resource location"
+  default     = "East US 2"
+  description = "Resource location"
 }
 
 variable "tags" {

@@ -50,6 +50,6 @@ variable "security_rule_name" {
 variable "tags" {
   type = "map"
   default = {
-    "MY_VALUE"      = "VALUE"
+    "MY_VALUE" = "VALUE"
   }
 }
