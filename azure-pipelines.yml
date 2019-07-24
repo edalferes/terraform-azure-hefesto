@@ -6,7 +6,7 @@ trigger:
 pool:
   vmImage: 'Ubuntu-16.04'
 
-name: $(date:yyyyMMdd)-$(releaseVersion)$(rev:.r)
+name: $(date:yyyyMMdd)-$(releaseVersion)$(rev:-r)
 variables:
   imageName: terraform-test 
   releaseVersion: 1.0.0
@@ -26,7 +26,7 @@ steps:
   displayName: 'Run docker test'
 
 - task: GitHubRelease@0
-  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     gitHubConnection: 'GitHub edalferes'
     repositoryName: 'edalferes/terraform-azure-recources'
