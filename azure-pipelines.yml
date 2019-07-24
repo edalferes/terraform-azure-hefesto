@@ -29,7 +29,5 @@ steps:
   inputs:
     gitHubConnection: 'GitHub edalferes'
     repositoryName: 'edalferes/terraform-azure-recources'
-    action: 'create'
-    tagSource: auto
     assets: |
          $(Build.ArtifactStagingDirectory)/README.md
