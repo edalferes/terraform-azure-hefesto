@@ -1,15 +1,14 @@
 # Starter pipeline
 trigger:
 - master
+- develop
 
 pool:
   vmImage: 'Ubuntu-16.04'
 
-name: $(date:yyyyMMdd)-v1.0.$(myBuildCounter)
+name: $(date:yyyyMMdd)$(rev:.r)
 variables:
   imageName: terraform-test 
-  myVersion: v1.0.$(myBuildCounter)
-  myBuildCounter: $[counter('buildCounter',1)]
 
 steps:
 - script: |
@@ -26,12 +25,11 @@ steps:
   displayName: 'Run docker test'
 
 - task: GitHubRelease@0
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  #condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     gitHubConnection: 'GitHub edalferes'
     repositoryName: 'edalferes/terraform-azure-recources'
     action: 'create'
-    tagSource: manual
-    tag: $(myVersion)  
+    tagSource: auto
     assets: |
          $(Build.ArtifactStagingDirectory)/README.md
