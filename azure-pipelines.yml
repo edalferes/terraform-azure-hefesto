@@ -4,7 +4,6 @@ trigger:
 - develop
 - master
 
-
 pool:
   vmImage: 'Ubuntu-16.04'
 
@@ -28,6 +27,7 @@ steps:
   displayName: 'Run docker test'
 
 - task: GitHubRelease@0
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   inputs:
     gitHubConnection: 'GitHub edalferes'
     repositoryName: 'edalferes/terraform-azure-recources'
