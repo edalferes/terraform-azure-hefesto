@@ -1,0 +1,37 @@
+# Starter pipeline
+trigger:
+- master
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+name: $(date:yyyyMMdd)-v1.0.$(myBuildCounter)
+variables:
+  imageName: terraform-test 
+  myVersion: v1.0.$(myBuildCounter)
+  myBuildCounter: $[counter('buildCounter',1)]
+
+steps:
+- script: |
+    docker build -t $(imageName) .
+  displayName: 'Build image docker'
+
+- script: |
+    docker run -e ARM_CLIENT_ID=$(spClientId) -e ARM_CLIENT_SECRET=$(spClientSecret) -e ARM_SUBSCRIPTION_ID=$(spSubscriptionId) -e ARM_TENANT_ID=$(spTenantId) $(imageName)
+  env:
+    ARM_CLIENT_ID: $(spClientId)
+    ARM_CLIENT_SECRET: $(spClientSecret)
+    ARM_SUBSCRIPTION_ID: $(spSubscriptionId)
+    ARM_TENANT_ID: $(spTenantId)
+  displayName: 'Run docker test'
+
+- task: GitHubRelease@0
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  inputs:
+    gitHubConnection: 'GitHub edalferes'
+    repositoryName: 'edalferes/terraform-azure-recources'
+    action: 'create'
+    tagSource: manual
+    tag: $(myVersion)  
+    assets: |
+         $(Build.ArtifactStagingDirectory)/README.md

@@ -26,12 +26,12 @@ resource "azurerm_virtual_machine" "virtual_machine" {
   }
   os_profile_linux_config {
     disable_password_authentication = "${var.os_profile_linux_config_disable_password}"
-    
+
     ssh_keys {
       path     = "/home/${var.os_profile_admin_username}/.ssh/authorized_keys"
       key_data = "${var.ssh_keys_data}"
     }
   }
-  
+
   tags = "${var.tags}"
 }

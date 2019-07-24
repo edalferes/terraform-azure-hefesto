@@ -1,11 +1,14 @@
-output "this_resource_group_name" {
-  value = "${module.resource_group.name}"
+output "name" {
+  value       = "${module.resource_group.name}"
+  description = "Resource group name"
 }
 
-output "this_location" {
-  value = "${azurerm_resource_group.resource_group.location}"
+output "location" {
+  value       = "${module.resource_group.location}"
+  description = "Resource location"
 }
 
-output "this_tags" {
-  value = "${azurerm_resource_group.resource_group.tags}"
+output "tags" {
+  value       = "${module.resource_group.tags}"
+  description = "Tags to definition resources"
 }

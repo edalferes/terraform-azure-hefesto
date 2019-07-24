@@ -9,7 +9,7 @@ variable "location" {
 }
 
 variable "tags" {
-  type    = "map"
-  default = {}
+  type        = "map"
+  default     = {}
+  description = "Tags to definition resources"
 }
-

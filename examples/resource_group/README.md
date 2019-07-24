@@ -1,14 +1,19 @@
-# Rerource Group
+
+# Resource Group
 
 This folder contain examples for create *resource group in azure*
 
-```
-module "resource_group" {
-  source  = "edalferes/recources/azure//modules/resource_group"
-  version = "0.1.0"
+## Running this module manually
 
-  name     = "${var.resource_group_name}"
-  location = "${var.location}"
-  tags     = "${var.tags}"
-}
-```
+1. Install [Terraform](https://www.terraform.io/) and make sure it's on your `PATH`.
+1. Run `terraform init`.
+1. Run `terraform apply`.
+1. When you're done, run `terraform destroy`.
+
+## Running automated tests against this module
+
+1. Install [Terraform](https://www.terraform.io/) and make sure it's on your `PATH`.
+1. Install [Golang](https://golang.org/) and make sure this code is checked out into your `GOPATH`.
+1. `cd test`
+1. `dep ensure`
+1. `go test -v -run TestResourceGroup`
