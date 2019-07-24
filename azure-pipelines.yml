@@ -22,3 +22,13 @@ steps:
     ARM_SUBSCRIPTION_ID: $(spSubscriptionId)
     ARM_TENANT_ID: $(spTenantId)
   displayName: 'Run docker test'
+
+- task: GitHubRelease@0
+  inputs:
+    gitHubConnection: 'GitHub edalferes'
+    repositoryName: 'edalferes/terraform-azure-recources'
+    action: 'create'
+    tagSource: manual
+    tag: $(Build.BuildNumber)      
+    assets: |
+         $(Build.ArtifactStagingDirectory)/README.md
