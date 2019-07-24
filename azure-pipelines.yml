@@ -1,6 +1,5 @@
 # Starter pipeline
 trigger:
-- develop
 - master
 
 pool:
