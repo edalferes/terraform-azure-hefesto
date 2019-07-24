@@ -6,10 +6,11 @@ trigger:
 pool:
   vmImage: 'Ubuntu-16.04'
 
-name: $(date:yyyyMMdd)$(rev:.r)
+name: $(date:yyyyMMdd)-$(releaseVersion)-$(rev:.r)
 variables:
   imageName: terraform-test 
-
+  releaseVersion: 1.0.0
+  
 steps:
 - script: |
     docker build -t $(imageName) .
@@ -29,5 +30,8 @@ steps:
   inputs:
     gitHubConnection: 'GitHub edalferes'
     repositoryName: 'edalferes/terraform-azure-recources'
-    assets: |
-         $(Build.ArtifactStagingDirectory)/README.md
+    action: 'create'
+    tagSource: manual
+    tag: $(releaseVersion)
+    addChangeLog: true
+    assets: $(Build.ArtifactStagingDirectory)
