@@ -2,12 +2,16 @@
 
 trigger:
 - develop
+- master
+
 
 pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
-  imageName: terraform-test  # Replace with the name of the image you want to publish
+  imageName: terraform-test 
+  Version.MajorMinor: 1.0
+  Version.Revision: $[counter(variables['Version.MajorMinor'], 0)]
 
 steps:
 - script: |
@@ -29,6 +33,6 @@ steps:
     repositoryName: 'edalferes/terraform-azure-recources'
     action: 'create'
     tagSource: manual
-    tag: $(Build.BuildNumber)      
+    tag: $(Version.Revision)      
     assets: |
          $(Build.ArtifactStagingDirectory)/README.md
