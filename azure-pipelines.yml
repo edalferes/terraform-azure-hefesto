@@ -1,5 +1,5 @@
 # Starter pipeline
-name: $(date:yyyyMMdd)-$(myVersion)
+name: $(date:yyyyMMdd)-1.0.$(myBuildCounter)
 
 trigger:
 - develop
