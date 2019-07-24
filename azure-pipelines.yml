@@ -6,7 +6,7 @@ trigger:
 pool:
   vmImage: 'Ubuntu-16.04'
 
-name: $(date:yyyyMMdd)-$(myVersion)
+name: $(date:yyyyMMdd)-1.0.$(myBuildCounter)
 variables:
   imageName: terraform-test 
   myVersion: 1.0.$(myBuildCounter)
