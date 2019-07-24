@@ -7,9 +7,9 @@ trigger:
 pool:
   vmImage: 'Ubuntu-16.04'
 
-name: 1.0.$(myBuildCounter)
 variables:
   imageName: terraform-test 
+  myVersion: 1.0.$(myBuildCounter)
   myBuildCounter: $[counter('buildCounter',1)]
 
 steps:
@@ -33,6 +33,6 @@ steps:
     repositoryName: 'edalferes/terraform-azure-recources'
     action: 'create'
     tagSource: manual
-    tag: 1.0.$(myBuildCounter)      
+    tag: $(myVersion)  
     assets: |
          $(Build.ArtifactStagingDirectory)/README.md
