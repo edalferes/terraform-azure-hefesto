@@ -11,7 +11,7 @@ pool:
 variables:
   imageName: terraform-test 
   Version.MajorMinor: 1.0
-  Version.Revision: $[counter(variables['Version.MajorMinor'], 0)]
+  Version.Revision: $[counter(variables['Version.MajorMinor'], 1)]
 
 steps:
 - script: |
