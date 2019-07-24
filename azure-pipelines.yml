@@ -6,7 +6,7 @@ trigger:
 pool:
   vmImage: 'Ubuntu-16.04'
 
-name: $(date:yyyyMMdd)-$(releaseVersion)-$(rev:.r)
+name: $(date:yyyyMMdd)-$(releaseVersion)$(rev:.r)
 variables:
   imageName: terraform-test 
   releaseVersion: 1.0.0
@@ -34,4 +34,7 @@ steps:
     tagSource: manual
     tag: $(releaseVersion)
     addChangeLog: true
-    assets: $(Build.ArtifactStagingDirectory)
+    assets: |
+      $(Build.ArtifactStagingDirectory)/README.md
+      $(Build.ArtifactStagingDirectory)/CHANGELOG.md
+
