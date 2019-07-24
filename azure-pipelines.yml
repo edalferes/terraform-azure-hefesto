@@ -1,4 +1,5 @@
 # Starter pipeline
+name: $(date:yyyyMMdd)-$(myVersion)
 
 trigger:
 - develop
