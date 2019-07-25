@@ -12,8 +12,5 @@ This folder contain examples for create *resource group in azure*
 
 ## Running automated tests against this module
 
-1. Install [Terraform](https://www.terraform.io/) and make sure it's on your `PATH`.
-1. Install [Golang](https://golang.org/) and make sure this code is checked out into your `GOPATH`.
-1. `cd test`
-1. `dep ensure`
-1. `go test -v -run TestResourceGroup`
+1. Build image docker: `docker build -t terraform-test .`
+1. Run docker test : `docker run -e ARM_CLIENT_ID=$(spClientId) -e ARM_CLIENT_SECRET=$(spClientSecret) -e ARM_SUBSCRIPTION_ID=$(spSubscriptionId) -e ARM_TENANT_ID=$(spTenantId) terraform-test`

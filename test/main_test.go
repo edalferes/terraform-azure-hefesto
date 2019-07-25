@@ -9,7 +9,7 @@ import (
 
 // TestResourceGroup: Execute test module resource group
 func TestResourceGroup(t *testing.T) {
-	t.Parallel()
+	//t.Parallel()
 
 	expectedName := "test-recource-group"
 	expectedLocation := "eastus2"
@@ -23,12 +23,10 @@ func TestResourceGroup(t *testing.T) {
 		Vars: map[string]interface{}{
 			"name":     expectedName,
 			"location": expectedLocation,
-
-			// We also can see how lists and maps translate between terratest and terraform.
-			"tags": expectedTags,
+			"tags":     expectedTags,
 		},
 
-		NoColor: true,
+		NoColor: false,
 	}
 
 	// At the end of the test, run `terraform destroy` to clean up any resources that were created
