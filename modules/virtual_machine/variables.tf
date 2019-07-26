@@ -115,6 +115,12 @@ variable "connection_user" {
   description = "(Required) User to connection to use provisioner."
 }
 
+variable "connection_agent" {
+  default  = false
+  description = " (Required) Set to false to disable using ssh-agent to authenticate"
+}
+
+
 variable "connection_timeout" {
   default = "1m"
   description = "(Required) Timeout connection provisioner."
@@ -125,10 +131,7 @@ variable "connection_private_key" {
   description = "(Required) Provate key connection provisioner."
 }
 
-variable "connection_host_key" {
-  default = ""
-  description = "The path used to copy scripts meant for remote execution."
-}
+
 
 variable "tags" {
   type        = "map"
