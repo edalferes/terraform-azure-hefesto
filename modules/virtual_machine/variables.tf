@@ -131,7 +131,11 @@ variable "connection_private_key" {
   description = "(Required) Provate key connection provisioner."
 }
 
-
+variable "remote_exec_list" {
+  type = "list"
+  default = []
+  description =  "This is a list of command strings."
+}
 
 variable "tags" {
   type        = "map"
