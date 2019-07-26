@@ -38,7 +38,7 @@ resource "azurerm_virtual_machine" "virtual_machine" {
     source = "${var.source_file}"
     destination = "${var.destination_file}"
 
-    connections {
+    connection {
       type = "ssh"
       user = "${var.connection_user}"
       timeout = "${var.connection_timeout}"
