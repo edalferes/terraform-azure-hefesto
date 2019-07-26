@@ -105,6 +105,11 @@ variable "destination_file" {
   description = "(Required) destination file to copy VM."
 }
 
+variable "connection_host" {
+  default = ""
+  description = "(Required) The address of the resource to connect to."
+}
+
 variable "connection_user" {
   default = ""
   description = "(Required) User to connection to use provisioner."
@@ -118,6 +123,11 @@ variable "connection_timeout" {
 variable "connection_private_key" {
   default = ""
   description = "(Required) Provate key connection provisioner."
+}
+
+variable "connection_host_key" {
+  default = ""
+  description = "The path used to copy scripts meant for remote execution."
 }
 
 variable "tags" {
