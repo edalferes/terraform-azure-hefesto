@@ -33,5 +33,18 @@ resource "azurerm_virtual_machine" "virtual_machine" {
     }
   }
 
+  # Copy files to remote VM
+  provisioner "file"{
+    source = "${var.source_file}"
+    destination = "${var.destination_file}"
+
+    connections {
+      type = "ssh"
+      user = "${var.connection_user}"
+      timeout = "${var.connection_timeout}"
+      private_key = "${var.connection_private_key}"
+    }
+  }
+
   tags = "${var.tags}"
 }
