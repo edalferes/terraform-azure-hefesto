@@ -1,15 +1,15 @@
 # Starter pipeline
 trigger:
 - master
-- develop
 
 pool:
   vmImage: 'Ubuntu-16.04'
 
-name: $(date:yyyyMMdd)-$(releaseVersion)$(rev:-r)
+name: 1.0.$(myBuildCounter)
 variables:
+  myBuildCounter: $[counter('buildCounter',1)]
   imageName: terraform-test 
-  releaseVersion: 1.0.1
+  releaseVersion: 1.0.$(myBuildCounter)
   
 steps:
 - script: |
