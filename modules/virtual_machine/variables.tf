@@ -96,45 +96,45 @@ variable "ssh_keys_data" {
 }
 
 variable "source_file" {
-  default = ""
+  default     = ""
   description = "(Required) source file to copy VM."
 }
 
 variable "destination_file" {
-  default = ""
+  default     = ""
   description = "(Required) destination file to copy VM."
 }
 
 variable "connection_host" {
-  default = ""
+  default     = ""
   description = "(Required) The address of the resource to connect to."
 }
 
 variable "connection_user" {
-  default = ""
+  default     = ""
   description = "(Required) User to connection to use provisioner."
 }
 
 variable "connection_agent" {
-  default  = false
+  default     = false
   description = " (Required) Set to false to disable using ssh-agent to authenticate"
 }
 
 
 variable "connection_timeout" {
-  default = "1m"
+  default     = "1m"
   description = "(Required) Timeout connection provisioner."
 }
 
 variable "connection_private_key" {
-  default = ""
+  default     = ""
   description = "(Required) Provate key connection provisioner."
 }
 
 variable "remote_exec_list" {
-  type = "list"
-  default = []
-  description =  "This is a list of command strings."
+  type        = "list"
+  default     = []
+  description = "This is a list of command strings."
 }
 
 variable "tags" {

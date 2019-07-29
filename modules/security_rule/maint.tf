@@ -1,6 +1,6 @@
 resource "azurerm_network_security_rule" "security_rule" {
   name                        = "${var.name}"
-  priority                    = 100
+  priority                    = "${var.priority}"
   direction                   = "${var.direction}"
   access                      = "${var.access}"
   protocol                    = "${var.protocol}"
