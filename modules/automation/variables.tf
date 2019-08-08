@@ -70,13 +70,3 @@ variable "publish_content_link_uri" {
   default     = "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-automation-runbook-getvms/Runbooks/Get-AzureVMTutorial.ps1"
   description = "(Required) The uri of the runbook content."
 }
-
-
-
-
-
-
-
-
-
-

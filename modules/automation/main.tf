@@ -19,7 +19,11 @@ resource "azurerm_automation_credential" "automation_credential" {
   password            = "${var.credencial_user_password}"
 }
 
-resource "azurerm_automation_runbook" "automation_runbook" {
+data "local_file" "this" {
+  filename = "${path.module}/start_stop.ps1"
+}
+
+resource "azurerm_automation_runbook" "start_stop_runbook" {
 
   count = var.runbook_enable ? 1 : 0
 
@@ -36,7 +40,7 @@ resource "azurerm_automation_runbook" "automation_runbook" {
     uri = "${var.publish_content_link_uri}"
   }
 
-  content = "${data.local_file.example.content}"
+  content = "${data.local_file.this.content}"
 
   tags = "${var.tags}"
 }
