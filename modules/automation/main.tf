@@ -20,6 +20,9 @@ resource "azurerm_automation_credential" "automation_credential" {
 }
 
 resource "azurerm_automation_runbook" "automation_runbook" {
+
+  count = var.runbook_enable ? 1 : 0
+
   name                = "${var.automation_runbook_name}"
   location            = "${azurerm_resource_group.resource_group.location}"
   resource_group_name = "${azurerm_resource_group.resource_group.name}"

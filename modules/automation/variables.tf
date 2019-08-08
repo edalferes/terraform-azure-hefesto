@@ -9,7 +9,7 @@ variable "location" {
 }
 
 variable "resource_group_name" {
-  default = ""
+  default     = ""
   description = "(Required) The name of the resource group in which the Automation Account is created. Changing this forces a new resource to be created."
 }
 
@@ -33,6 +33,13 @@ variable "credencial_user_password" {
   default     = "2NgGAJud"
   description = "(Required) The password associated with this Automation Credential."
 }
+
+variable "runbook_enable" {
+  type        = bool
+  default     = false
+  description = "(Required) Enable/Disable create runbool."
+}
+
 
 variable "automation_runbook_name" {
   default     = "Start_Stop_VM"
@@ -60,7 +67,7 @@ variable "runbook_type" {
 }
 
 variable "publish_content_link_uri" {
-  default = "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-automation-runbook-getvms/Runbooks/Get-AzureVMTutorial.ps1"
+  default     = "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-automation-runbook-getvms/Runbooks/Get-AzureVMTutorial.ps1"
   description = "(Required) The uri of the runbook content."
 }
 
