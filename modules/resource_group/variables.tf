@@ -4,7 +4,7 @@ variable "name" {
 }
 
 variable "location" {
-  default     = ""
+  default     = "East US 2"
   description = "resource location"
 }
 
