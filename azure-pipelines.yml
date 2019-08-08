@@ -9,7 +9,7 @@ pool:
 name: $(date:yyyyMMdd)-$(releaseVersion)$(rev:-r)
 variables:
   imageName: terraform-test 
-  releaseVersion: 1.0.6
+  releaseVersion: 1.0.7
   
 steps:
 - script: |
