@@ -13,12 +13,6 @@ variable "resource_group_name" {
   description = "(Required) The name of the resource group in which the Automation Account is created. Changing this forces a new resource to be created."
 }
 
-variable "tags" {
-  type        = "map"
-  default     = {}
-  description = "(Optional) A mapping of tags to assign to the resource."
-}
-
 variable "credencial_name" {
   default     = "credencial_main"
   description = "(Required) Specifies the name of the Credential. Changing this forces a new resource to be created."
@@ -69,4 +63,10 @@ variable "runbook_type" {
 variable "publish_content_link_uri" {
   default     = "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-automation-runbook-getvms/Runbooks/Get-AzureVMTutorial.ps1"
   description = "(Required) The uri of the runbook content."
+}
+
+variable "tags" {
+  type        = "map"
+  default     = {}
+  description = "(Optional) A mapping of tags to assign to the resource."
 }
