@@ -1,7 +1,7 @@
 resource "azurerm_resource_group" "resource_group" {
   name     = "${var.resource_group_name}"
   location = "${var.location}"
-  
+
   tags = "${var.tags}"
 }
 
@@ -9,7 +9,7 @@ resource "azurerm_automation_account" "automation_account" {
   name                = "${var.automation_account_name}"
   location            = "${azurerm_resource_group.resource_group.location}"
   resource_group_name = "${azurerm_resource_group.resource_group.name}"
-  sku_name = "Basic"
+  sku_name            = "Basic"
 
   tags = "${var.tags}"
 }
