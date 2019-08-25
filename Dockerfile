@@ -1,4 +1,4 @@
-FROM golang:1.12.7-stretch
+FROM golang:1.12.9-stretch
 
 LABEL MAINTAINER Edmilson Alferes <edmilson.alferes@gmail.com>
 
