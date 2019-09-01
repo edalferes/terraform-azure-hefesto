@@ -6,5 +6,5 @@ module "media_service" {
   location             = "${var.location}"
   resource_group_name  = "${var.resource_group_name}"
   storage_account_name = "${var.storage_account_name}"
-  tags                 = "${var.tags}"
+  #tags                 = "${var.tags}"
 }
