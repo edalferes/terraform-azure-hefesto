@@ -1,19 +1,19 @@
 variable "prefix" {
-    default     = ""
-    description = "A prefix used for all resources in this example"
+  default     = ""
+  description = "A prefix used for all resources in this example"
 }
 
 variable "location" {
-    default     = ""
-    description = "The Azure Region in which all resources in this example should be provisioned"
+  default     = ""
+  description = "The Azure Region in which all resources in this example should be provisioned"
 }
 
 variable "kubernetes_client_id" {
-    description = "The Client ID for the Service Principal to use for this Managed Kubernetes Cluster"
+  description = "The Client ID for the Service Principal to use for this Managed Kubernetes Cluster"
 }
 
 variable "kubernetes_client_secret" {
-    description = "The Client Secret for the Service Principal to use for this Managed Kubernetes Cluster"
+  description = "The Client Secret for the Service Principal to use for this Managed Kubernetes Cluster"
 }
 
 variable "public_ssh_key_path" {
