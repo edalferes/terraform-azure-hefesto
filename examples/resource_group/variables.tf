@@ -1,5 +1,5 @@
 variable "name" {
-  default     = "test-recource-group"
+  default     = "trf-recource-group"
   description = "Resource group name"
 }
 

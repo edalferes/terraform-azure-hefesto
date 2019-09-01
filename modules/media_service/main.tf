@@ -2,7 +2,7 @@
 resource "azurerm_resource_group" "rg" {
   name     = "${var.resource_group_name}"
   location = "${var.location}"
-  tags     = "${var.tags}"
+  #tags     = "${var.tags}"
 }
 
 resource "azurerm_storage_account" "st" {
@@ -11,7 +11,7 @@ resource "azurerm_storage_account" "st" {
   location                 = "${azurerm_resource_group.rg.location}"
   account_tier             = "Standard"
   account_replication_type = "GRS"
-  tags                     = "${var.tags}"
+  #tags                     = "${var.tags}"
 }
 
 resource "azurerm_media_services_account" "ams" {

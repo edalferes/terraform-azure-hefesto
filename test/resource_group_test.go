@@ -11,9 +11,9 @@ import (
 func TestResourceGroup(t *testing.T) {
 	//t.Parallel()
 
-	expectedName := "test-recource-group"
+	expectedName := "trf-recource-group"
 	expectedLocation := "eastus2"
-	expectedTags := map[string]string{"test_resource_group_1": expectedName, "test_location": expectedLocation}
+	expectedTags := map[string]string{"trf_resource_group_1": expectedName, "trf_location": expectedLocation}
 
 	terraformOptions := &terraform.Options{
 		// The path to where your Terraform code is located
