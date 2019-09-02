@@ -9,14 +9,11 @@ variable "kubernetes_client_secret" {
 variable "prefix" {
   default     = ""
   description = "A prefix used for all resources in this example"
-<<<<<<< HEAD
-=======
 }
 
 variable "resource_group" {
   default     = ""
   description = "(Required) The name of the resource group. Must be unique on your Azure subscription."
->>>>>>> fa6cf08004087fe5dbaa4d40ba76363f6c44694d
 }
 
 variable "location" {
@@ -24,14 +21,6 @@ variable "location" {
   description = "The Azure Region in which all resources in this example should be provisioned"
 }
 
-<<<<<<< HEAD
-variable "kubernetes_client_id" {
-  description = "The Client ID for the Service Principal to use for this Managed Kubernetes Cluster"
-}
-
-variable "kubernetes_client_secret" {
-  description = "The Client Secret for the Service Principal to use for this Managed Kubernetes Cluster"
-=======
 variable "admin_user_name" {
   default     = ""
   description = "(Required) The Admin Username for the Cluster. Changing this forces a new resource to be created."
@@ -91,7 +80,6 @@ variable "docker_bridge_cidr" {
 variable "pod_cidr" {
   default     = "10.244.0.0/16"
   description = "(Required) The CIDR to use for pod IP addresses. This field can only be set when network_plugin is set to kubenet. Changing this forces a new resource to be created."
->>>>>>> fa6cf08004087fe5dbaa4d40ba76363f6c44694d
 }
 
 variable "service_cidr" {
