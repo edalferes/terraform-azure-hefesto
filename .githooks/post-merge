@@ -1,0 +1,54 @@
+#!/bin/bash
+# To enable this hook, execute: # git config core.hooksPath .githooks
+# Maintainer: Edmilson Alferes <edmilson.alferes@ibopemedia.kantar.com>
+
+VERSION_BASE=$(cat .githooks/VERSION_BASE)
+
+get_branch(){
+
+    branch=$(git rev-parse --abbrev-ref HEAD)
+    echo ${branch}
+}
+
+get_patch(){
+
+    branch=${1}
+
+    if [[ ${branch} == "develop" ]]; then
+        patch="0-alpha.$(git log ${branch} --pretty=oneline | wc -l | sed 's/ //g')"
+    else
+        patch="$(git log ${branch} --pretty=oneline | wc -l | sed 's/ //g')"
+    fi
+
+    echo ${patch}
+}
+
+build_version(){
+
+    branch=$(get_branch)
+    patch=$(get_patch "${branch}")
+   
+    echo "${VERSION_BASE}${patch}" > VERSION_TMP
+    tr '\n' ' ' < VERSION_TMP > VERSION
+    sed -i 's/ *$//g' VERSION
+}
+
+git_add() {
+
+    git add VERSION
+    git commit -am "Changed VERSION file for git hook"
+}
+
+clean() {
+    rm -rf VERSION_TMP
+}
+
+main(){
+
+    build_version
+    git_add
+    clean
+}
+
+
+main

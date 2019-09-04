@@ -6,35 +6,45 @@ trigger:
 pool:
   vmImage: 'Ubuntu-16.04'
 
-name: $(date:yyyyMMdd)-$(releaseVersion)$(rev:-r)
+name: $(Build.BuildNumber)
 variables:
-  imageName: terraform-test 
-  releaseVersion: 1.0.9
+  imageName: terraform-test
   
 steps:
-- script: |
-    docker build -t $(imageName) .
-  displayName: 'Build image docker'
 
-- script: |
-    docker run -e ARM_CLIENT_ID=$(spClientId) -e ARM_CLIENT_SECRET=$(spClientSecret) -e ARM_SUBSCRIPTION_ID=$(spSubscriptionId) -e ARM_TENANT_ID=$(spTenantId) $(imageName)
-  env:
-    ARM_CLIENT_ID: $(spClientId)
-    ARM_CLIENT_SECRET: $(spClientSecret)
-    ARM_SUBSCRIPTION_ID: $(spSubscriptionId)
-    ARM_TENANT_ID: $(spTenantId)
-  displayName: 'Run docker test'
+  - task: Bash@3
+    displayName: Bootstrap
+    inputs:
+      targetType: inline
+      script: |
+        version=$(cat VERSION)
+        echo "##vso[task.setvariable variable=version;]${version}"
+        echo "##vso[build.addbuildtag]${version}"
+        echo "##vso[build.updatebuildnumber]${version}
 
-- task: GitHubRelease@0
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
-  inputs:
-    gitHubConnection: 'GitHub edalferes'
-    repositoryName: 'edalferes/terraform-azure-recources'
-    action: 'create'
-    tagSource: manual
-    tag: $(releaseVersion)
-    addChangeLog: true
-    assets: |
-      $(Build.ArtifactStagingDirectory)/README.md
-      $(Build.ArtifactStagingDirectory)/CHANGELOG.md
+  - script: |
+      docker build -t $(imageName) .
+    displayName: 'Build image docker'
+
+  - script: |
+      docker run -e ARM_CLIENT_ID=$(spClientId) -e ARM_CLIENT_SECRET=$(spClientSecret) -e ARM_SUBSCRIPTION_ID=$(spSubscriptionId) -e ARM_TENANT_ID=$(spTenantId) $(imageName)
+    env:
+      ARM_CLIENT_ID: $(spClientId)
+      ARM_CLIENT_SECRET: $(spClientSecret)
+      ARM_SUBSCRIPTION_ID: $(spSubscriptionId)
+      ARM_TENANT_ID: $(spTenantId)
+    displayName: 'Run docker test'
+
+  - task: GitHubRelease@0
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+    inputs:
+      gitHubConnection: 'GitHub edalferes'
+      repositoryName: 'edalferes/terraform-azure-recources'
+      action: 'create'
+      tagSource: manual
+      tag: $(version)
+      addChangeLog: true
+      assets: |
+        $(Build.ArtifactStagingDirectory)/README.md
+        $(Build.ArtifactStagingDirectory)/CHANGELOG.md
 
