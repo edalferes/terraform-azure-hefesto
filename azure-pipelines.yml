@@ -12,8 +12,14 @@ variables:
   
 steps:
 
-  - task: Bash@3
+  - task: ShellScript@2
     displayName: Bootstrap
+    inputs:
+      scriptPath: .ci_cd/build_file_version.sh
+      args: $(Build.SourceBranchName) $(Build.BuildId)
+
+  - task: Bash@3
+    displayName: SetEnvironment
     inputs:
       targetType: inline
       script: |
