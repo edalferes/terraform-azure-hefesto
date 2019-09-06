@@ -48,7 +48,7 @@ steps:
   - task: GitHubRelease@0
     condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     inputs:
-      gitHubConnection: 'edalferes'
+      gitHubConnection: 'edalferesAccessToken'
       repositoryName: 'edalferes/terraform-azure-recources'
       action: 'create'
       tagSource: manual
