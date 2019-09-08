@@ -6,4 +6,3 @@
 ![](docs/img/hefesto_icon.png)
 
 Repository containing terraform modules for infrastructure control at Azure
-
