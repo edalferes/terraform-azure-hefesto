@@ -48,8 +48,8 @@ steps:
   - task: GitHubRelease@0
     condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
     inputs:
-      gitHubConnection: 'edalferesAccessToken'
-      repositoryName: 'edalferes/terraform-azure-recources'
+      gitHubConnection: 'edalferes-access-token'
+      repositoryName: 'edalferes/terraform-azure-hefesto'
       action: 'create'
       tagSource: manual
       tag: $(version)
