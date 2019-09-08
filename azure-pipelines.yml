@@ -1,7 +1,6 @@
 # Starter pipeline
 trigger:
 - master
-- develop
 
 pool:
   vmImage: 'Ubuntu-16.04'
@@ -46,7 +45,7 @@ steps:
       ARM_TENANT_ID: $(spTenantId)
 
   - task: GitHubRelease@0
-    condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+    displayName: PushRelease
     inputs:
       gitHubConnection: 'edalferes-access-token'
       repositoryName: 'edalferes/terraform-azure-hefesto'
@@ -57,4 +56,3 @@ steps:
       assets: |
         $(Build.ArtifactStagingDirectory)/README.md
         $(Build.ArtifactStagingDirectory)/CHANGELOG.md
-
