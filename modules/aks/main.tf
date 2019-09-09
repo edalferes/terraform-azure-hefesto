@@ -34,20 +34,23 @@ resource "azurerm_kubernetes_cluster" "aks" {
     }
   }
 
-  agent_pool_profile {
-    name                = "main"
-    count               = "${var.node_min_count}"
-    vm_size             = "${var.node_size}"
-    os_type             = "Linux"
-    os_disk_size_gb     = 30
-    type                = "VirtualMachineScaleSets"
-    enable_auto_scaling = "${var.enable_auto_scaling}"
-    min_count           = "${var.node_min_count}"
-    max_count           = "${var.node_max_count}"
-    max_pods            = "${var.max_pods}"
+  dynamic "agent_pool_profile" {
+    for_each = var.node_pool
+    content {
+      name                = agent_pool_profile.value["name"]
+      count               = agent_pool_profile.value["count"]
+      vm_size             = agent_pool_profile.value["vm_size"]
+      os_type             = agent_pool_profile.value["os_type"]
+      os_disk_size_gb     = agent_pool_profile.value["os_disk_size_gb"]
+      type                = agent_pool_profile.value["type"]
+      enable_auto_scaling = agent_pool_profile.value["enable_auto_scaling"]
+      min_count           = agent_pool_profile.value["min_count"]
+      max_count           = agent_pool_profile.value["max_count"]
+      max_pods            = agent_pool_profile.value["max_pods"]
 
-    # Required for advanced networking
-    vnet_subnet_id = "${azurerm_subnet.subnet.id}"
+      # Required for advanced networking
+      vnet_subnet_id = "${azurerm_subnet.subnet.id}"
+    }
   }
 
   service_principal {

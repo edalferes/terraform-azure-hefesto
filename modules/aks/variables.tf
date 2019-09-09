@@ -31,30 +31,22 @@ variable "public_ssh_key" {
   description = " (Required) An ssh_key block. Only one is currently allowed. Changing this forces a new resource to be created."
 }
 
-variable "node_size" {
-  default     = "Standard_DS2_v2"
-  description = "(Required) The size of each VM in the Agent Pool (e.g. Standard_DS2_v2). Changing this forces a new resource to be created."
-}
-
-variable "enable_auto_scaling" {
-  type        = bool
-  default     = true
-  description = " (Required) Whether to enable auto-scaler."
-}
-
-variable "node_min_count" {
-  default     = 3
-  description = "(Required) Minimum number of nodes for auto-scaling"
-}
-
-variable "node_max_count" {
-  default     = 10
-  description = "(Required) Maximum number of nodes for auto-scaling"
-}
-
-variable "max_pods" {
-  default     = 110
-  description = "(Required) The maximum number of pods that can run on each agent. Changing this forces a new resource to be created."
+variable "node_pool" {
+  type = list(map(string))
+  default = [
+    {
+      name                = "main"
+      count               = "3"
+      vm_size             = "Standard_DS2_v2"
+      os_type             = "Linux"
+      os_disk_size_gb     = 30
+      type                = "VirtualMachineScaleSets"
+      enable_auto_scaling = true
+      min_count           = "3"
+      max_count           = "10"
+      max_pods            = "110"
+    },
+  ]
 }
 
 variable "virtual_network_address" {
@@ -92,3 +84,4 @@ variable "tags" {
   default     = {}
   description = "(Required) A mapping of tags to assign to the resource."
 }
+
