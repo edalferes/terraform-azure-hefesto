@@ -17,9 +17,3 @@ variable "address_prefix" {
   default     = "10.0.1.0/24"
   description = "(Required) The address prefix to use for the subnet."
 }
-
-variable "network_security_group_id" {
-  default     = ""
-  description = "(Optional / Deprecated) The ID of the Network Security Group to associate with the subnet."
-
-}

@@ -1,30 +1,36 @@
-resource "azurerm_resource_group" "rg" {
+module "resource_group" {
+  source = "../resource_group"
+
   name     = "${var.resource_group}"
   location = "${var.location}"
   tags     = "${var.tags}"
 }
 
-resource "azurerm_virtual_network" "vnet" {
-  name                = "${var.prefix}-vnet"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
-  location            = "${azurerm_resource_group.rg.location}"
-  address_space       = ["${var.virtual_network_address}"]
+module "virtual_network" {
+  source = "../virtual_network"
 
-  tags = "${var.tags}"
+  name                = "${var.prefix}-vnet"
+  resource_group_name = "${module.resource_group.name}"
+  location            = "${module.resource_group.location}"
+  address_space       = "${var.virtual_network_address}"
+  tags                = "${var.tags}"
+
 }
 
-resource "azurerm_subnet" "subnet" {
+module "subnet" {
+  source = "../subnet"
+
   name                 = "${var.prefix}-subnet"
-  resource_group_name  = "${azurerm_resource_group.rg.name}"
+  resource_group_name  = "${module.resource_group.name}"
   address_prefix       = "${var.subnet_address}"
-  virtual_network_name = "${azurerm_virtual_network.vnet.name}"
+  virtual_network_name = "${module.virtual_network.name}"
 }
 
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "${var.prefix}-aks"
-  location            = "${azurerm_resource_group.rg.location}"
+  location            = "${module.resource_group.location}"
   dns_prefix          = "${var.prefix}-aks"
-  resource_group_name = "${azurerm_resource_group.rg.name}"
+  resource_group_name = "${module.resource_group.name}"
 
   linux_profile {
     admin_username = "${var.admin_user_name}"
@@ -49,7 +55,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
       max_pods            = agent_pool_profile.value["max_pods"]
 
       # Required for advanced networking
-      vnet_subnet_id = "${azurerm_subnet.subnet.id}"
+      vnet_subnet_id = "${module.subnet.id}"
     }
   }
 
