@@ -27,6 +27,19 @@ steps:
         echo "##vso[build.addbuildtag]${version}"
         echo "##vso[build.updatebuildnumber]${version}"
 
+  - task: SonarCloudPrepare@1
+    inputs:
+      SonarCloud: 'km-enginerring-ams'
+      organization: 'kantarmedia'
+      scannerMode: 'CLI'
+      configMode: 'file'
+
+  - task: SonarCloudAnalyze@1
+
+  - task: SonarCloudPublish@1
+    inputs:
+      pollingTimeoutSec: '300'
+
   - task: Bash@3
     displayName: 'Build image docker'
     inputs:
