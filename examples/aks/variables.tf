@@ -1,14 +1,15 @@
 variable "kubernetes_client_id" {
-  description = "The Client ID for the Service Principal to use for this Managed Kubernetes Cluster"
+    default = "10d468f3-edb9-455b-a1e2-d24a35a55932"
+    description = "The Client ID for the Service Principal to use for this Managed Kubernetes Cluster"
 }
 
 variable "kubernetes_client_secret" {
-  description = "The Client Secret for the Service Principal to use for this Managed Kubernetes Cluster"
+    default = "4c313ab8-6c28-47fd-9eff-aabe43178e1e"
+    description = "The Client Secret for the Service Principal to use for this Managed Kubernetes Cluster"
 }
-
-variable "prefix" {
+variable "aks_name" {
   default     = "terraform-test"
-  description = "A prefix used for all resources in this example"
+  description = "(Required) The name of the Managed Kubernetes Cluster to create. Changing this forces a new resource to be created."
 }
 
 variable "resource_group" {
@@ -49,14 +50,25 @@ variable "node_pool" {
   ]
 }
 
+
+variable "virtual_network_name" {
+  default = "terraform-test-vnet"
+  description = " (Required) The name of the virtual network. Changing this forces a new resource to be created."
+}
+
 variable "virtual_network_address" {
   default     = "10.1.0.0/16"
   description = ""
 }
 
+variable "subnet_name" {
+  default = "terraform-test-subnet"
+  description = "(Required) The name of the subnet. Changing this forces a new resource to be created."
+}
+
 variable "subnet_address" {
   default     = "10.1.0.0/16"
-  description = ""
+  description = "(Required) The address prefix to use for the subnet."
 }
 
 variable "dns_service_ip" {

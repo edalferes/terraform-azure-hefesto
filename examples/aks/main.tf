@@ -1,9 +1,14 @@
 module "aks" {
   source = "../../modules/aks"
 
-  prefix          = "${var.prefix}"
+  aks_name        = "${var.aks_name}"
   resource_group  = "${var.resource_group}"
   location        = "${var.location}"
+
+  virtual_network_name = "${var.virtual_network_name}"
+  subnet_name = "${var.subnet_name}"
+
+
   admin_user_name = "${var.admin_user_name}"
   public_ssh_key  = "${tls_private_key.my_key.public_key_openssh}"
 

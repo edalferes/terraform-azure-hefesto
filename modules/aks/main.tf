@@ -9,7 +9,7 @@ module "resource_group" {
 module "virtual_network" {
   source = "../virtual_network"
 
-  name                = "${var.prefix}-vnet"
+  name                = "${var.virtual_network_name}"
   resource_group_name = "${module.resource_group.name}"
   location            = "${module.resource_group.location}"
   address_space       = "${var.virtual_network_address}"
@@ -20,16 +20,16 @@ module "virtual_network" {
 module "subnet" {
   source = "../subnet"
 
-  name                 = "${var.prefix}-subnet"
+  name                 = "${var.subnet_name}"
   resource_group_name  = "${module.resource_group.name}"
   address_prefix       = "${var.subnet_address}"
   virtual_network_name = "${module.virtual_network.name}"
 }
 
 resource "azurerm_kubernetes_cluster" "aks" {
-  name                = "${var.prefix}-aks"
+  name                = "${var.aks_name}"
   location            = "${module.resource_group.location}"
-  dns_prefix          = "${var.prefix}-aks"
+  dns_prefix          = "${var.aks_name}"
   resource_group_name = "${module.resource_group.name}"
 
   linux_profile {
@@ -55,7 +55,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
       max_pods            = agent_pool_profile.value["max_pods"]
 
       # Required for advanced networking
-      vnet_subnet_id = "${module.subnet.id}"
+      #vnet_subnet_id = "${module.subnet.id}"
     }
   }
 
@@ -65,7 +65,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 
   network_profile {
-    network_plugin     = "azure"
+    network_plugin     = "kubenet"
     dns_service_ip     = "${var.dns_service_ip}"
     docker_bridge_cidr = "${var.docker_bridge_cidr}"
     pod_cidr           = "${var.pod_cidr}"
