@@ -1,11 +1,9 @@
 variable "kubernetes_client_id" {
-    default = "10d468f3-edb9-455b-a1e2-d24a35a55932"
-    description = "The Client ID for the Service Principal to use for this Managed Kubernetes Cluster"
+  description = "The Client ID for the Service Principal to use for this Managed Kubernetes Cluster"
 }
 
 variable "kubernetes_client_secret" {
-    default = "4c313ab8-6c28-47fd-9eff-aabe43178e1e"
-    description = "The Client Secret for the Service Principal to use for this Managed Kubernetes Cluster"
+  description = "The Client Secret for the Service Principal to use for this Managed Kubernetes Cluster"
 }
 variable "aks_name" {
   default     = "terraform-test"
@@ -37,12 +35,12 @@ variable "node_pool" {
   default = [
     {
       name                = "main"
-      count               = "3"
+      count               = "1"
       vm_size             = "Standard_DS2_v2"
       os_type             = "Linux"
       os_disk_size_gb     = 30
       type                = "VirtualMachineScaleSets"
-      enable_auto_scaling = "false"
+      enable_auto_scaling = "true"
       min_count           = "1"
       max_count           = "10"
       max_pods            = "110"
@@ -52,7 +50,7 @@ variable "node_pool" {
 
 
 variable "virtual_network_name" {
-  default = "terraform-test-vnet"
+  default     = "terraform-test-vnet"
   description = " (Required) The name of the virtual network. Changing this forces a new resource to be created."
 }
 
@@ -62,7 +60,7 @@ variable "virtual_network_address" {
 }
 
 variable "subnet_name" {
-  default = "terraform-test-subnet"
+  default     = "terraform-test-subnet"
   description = "(Required) The name of the subnet. Changing this forces a new resource to be created."
 }
 
@@ -89,10 +87,4 @@ variable "pod_cidr" {
 variable "service_cidr" {
   default     = "10.0.0.0/16"
   description = "(Required) The Network Range used by the Kubernetes service. This is required when network_plugin is set to azure. Changing this forces a new resource to be created."
-}
-
-variable "tags" {
-  type        = "map"
-  default     = {}
-  description = "(Required) A mapping of tags to assign to the resource."
 }

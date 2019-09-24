@@ -14,7 +14,6 @@ module "virtual_network" {
   location            = "${module.resource_group.location}"
   address_space       = "${var.virtual_network_address}"
   tags                = "${var.tags}"
-
 }
 
 module "subnet" {
@@ -53,9 +52,6 @@ resource "azurerm_kubernetes_cluster" "aks" {
       min_count           = agent_pool_profile.value["min_count"]
       max_count           = agent_pool_profile.value["max_count"]
       max_pods            = agent_pool_profile.value["max_pods"]
-
-      # Required for advanced networking
-      #vnet_subnet_id = "${module.subnet.id}"
     }
   }
 
