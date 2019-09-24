@@ -42,8 +42,8 @@ variable "node_pool" {
       os_type             = "Linux"
       os_disk_size_gb     = 30
       type                = "VirtualMachineScaleSets"
-      enable_auto_scaling = true
-      min_count           = "3"
+      enable_auto_scaling = "false"
+      min_count           = "1"
       max_count           = "10"
       max_pods            = "110"
     },
