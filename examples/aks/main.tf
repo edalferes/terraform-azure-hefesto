@@ -25,11 +25,10 @@ resource "tls_private_key" "my_key" {
 }
 
 variable "my_tags" {
-  type = map(string)
+  type = "map"
   default = {
     "MAINTAINER"       = "Edmilson Alferes (KIM)"
     "PROJECT"          = "Devops"
     "KM-LOCATION-TEAM" = "Sao_Paulo/BR"
   }
 }
-

@@ -10,7 +10,7 @@
   version = "v1.1.1"
 
 [[projects]]
-  digest = "1:a8e79c334e9bc71fe068a85c9b8106ce416e87f948bb7c69119450f4e1b23bd7"
+  digest = "1:3cc0de69f05d617947dfaab6408f6866bd7691c0a18121304b423a63df783597"
   name = "github.com/gruntwork-io/terratest"
   packages = [
     "modules/collections",
@@ -23,8 +23,8 @@
     "modules/terraform",
   ]
   pruneopts = ""
-  revision = "367843c5fa8429d84d2e9b78402546316b54ee91"
-  version = "v0.17.6"
+  revision = "dc53986f3d6e3b87089dd88c0aaca851af7dac09"
+  version = "v0.19.1"
 
 [[projects]]
   digest = "1:256484dbbcd271f9ecebc6795b2df8cad4c458dd0f5fd82a8c2fa0c29f233411"

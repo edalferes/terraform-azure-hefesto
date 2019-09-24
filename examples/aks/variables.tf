@@ -31,7 +31,7 @@ variable "public_ssh_key" {
 }
 
 variable "node_pool" {
-  type = list(map(string))
+  type = "list"
   default = [
     {
       name                = "main"
