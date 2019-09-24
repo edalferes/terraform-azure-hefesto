@@ -18,7 +18,3 @@ output "virtual_network_name" {
 output "address_prefix" {
   value = "${azurerm_subnet.subnet.virtual_network_name}"
 }
-
-output "network_security_group_id" {
-  value = "${azurerm_subnet.subnet.network_security_group_id}"
-}

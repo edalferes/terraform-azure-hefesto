@@ -13,9 +13,9 @@ variable "resource_group_name" {
   description = "(Required) The name of the resource group in which to create the public ip."
 }
 
-variable "public_ip_address_allocation" {
+variable "allocation_method" {
   default     = "Static"
-  description = "(Required) Defines whether the IP address is static or dynamic. Options are Static or Dynamic."
+  description = "(Required) Defines the allocation method for this IP address. Possible values are Static or Dynamic."
 }
 
 variable "domain_name_label" {
