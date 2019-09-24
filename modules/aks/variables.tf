@@ -6,47 +6,46 @@ variable "kubernetes_client_secret" {
   description = "The Client Secret for the Service Principal to use for this Managed Kubernetes Cluster"
 }
 
-variable "prefix" {
-  default     = ""
-  description = "A prefix used for all resources in this example"
+variable "aks_name" {
+  description = "(Required) The name of the Managed Kubernetes Cluster to create. Changing this forces a new resource to be created."
 }
 
 variable "resource_group" {
-  default     = ""
   description = "(Required) The name of the resource group. Must be unique on your Azure subscription."
 }
 
 variable "location" {
-  default     = ""
   description = "The Azure Region in which all resources in this example should be provisioned"
 }
 
 variable "admin_user_name" {
-  default     = ""
   description = "(Required) The Admin Username for the Cluster. Changing this forces a new resource to be created."
 }
 
 variable "public_ssh_key" {
-  default     = ""
   description = " (Required) An ssh_key block. Only one is currently allowed. Changing this forces a new resource to be created."
 }
 
 variable "node_pool" {
-  type = list(map(string))
+  type = "list"
   default = [
     {
       name                = "main"
-      count               = "3"
+      count               = "1"
       vm_size             = "Standard_DS2_v2"
       os_type             = "Linux"
       os_disk_size_gb     = 30
       type                = "VirtualMachineScaleSets"
       enable_auto_scaling = true
-      min_count           = "3"
+      min_count           = "1"
       max_count           = "10"
       max_pods            = "110"
     },
   ]
+}
+
+variable "virtual_network_name" {
+  description = " (Required) The name of the virtual network. Changing this forces a new resource to be created."
 }
 
 variable "virtual_network_address" {
@@ -54,9 +53,13 @@ variable "virtual_network_address" {
   description = ""
 }
 
+variable "subnet_name" {
+  description = "(Required) The name of the subnet. Changing this forces a new resource to be created."
+}
+
 variable "subnet_address" {
   default     = "10.1.0.0/16"
-  description = ""
+  description = "(Required) The address prefix to use for the subnet."
 }
 
 variable "dns_service_ip" {
@@ -84,4 +87,3 @@ variable "tags" {
   default     = {}
   description = "(Required) A mapping of tags to assign to the resource."
 }
-

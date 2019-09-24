@@ -29,7 +29,7 @@ variable "credencial_user_password" {
 }
 
 variable "runbook_enable" {
-  type        = bool
+  type        = "bool"
   default     = false
   description = "(Required) Enable/Disable create runbool."
 }

@@ -9,7 +9,6 @@ import (
 
 // TestResourceGroup: Execute test module resource group
 func TestResourceGroup(t *testing.T) {
-	//t.Parallel()
 
 	expectedName := "trf-recource-group"
 	expectedLocation := "eastus2"
