@@ -36,6 +36,11 @@ output "service_principal_password" {
   value = "${random_string.password.result}"
 }
 
+output "subscription_id" {
+  value = "${data.azurerm_subscription.current.subscription_id}"
+}
+
+
 output "tenant_id" {
   value = "${data.azurerm_subscription.current.tenant_id}"
 }
