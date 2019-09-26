@@ -1,3 +1,8 @@
+output "cluster_name" {
+  value       = "${azurerm_kubernetes_cluster.aks.name}"
+  description = "The Kubernetes Managed Cluster ID."
+}
+
 output "cluster_id" {
   value       = "${azurerm_kubernetes_cluster.aks.id}"
   description = "The Kubernetes Managed Cluster ID."
