@@ -13,9 +13,6 @@ module "aks" {
 
   node_pool = "${var.node_pool}"
 
-  kubernetes_client_id     = "${var.kubernetes_client_id}"
-  kubernetes_client_secret = "${var.kubernetes_client_secret}"
-
   tags = "${var.my_tags}"
 }
 

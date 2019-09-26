@@ -27,3 +27,15 @@ output "node_resource_group" {
   value       = "${azurerm_kubernetes_cluster.aks.node_resource_group}"
   description = "The auto-generated Resource Group which contains the resources for this Managed Kubernetes Cluster."
 }
+
+output "service_principal_id" {
+  value = "${azuread_service_principal.aks.application_id}"
+}
+
+output "service_principal_password" {
+  value = "${random_string.password.result}"
+}
+
+output "tenant_id" {
+  value = "${data.azurerm_subscription.current.tenant_id}"
+}

@@ -1,3 +1,30 @@
+data "azurerm_subscription" "current" {}
+
+
+# Generate random string to be used as service principal password
+resource "random_string" "password" {
+  length  = 32
+  special = false
+}
+
+# Create Azure AD Application for Service Principal
+resource "azuread_application" "aks" {
+  name = "${var.aks_name}-sp"
+}
+
+# Create Service Principal
+resource "azuread_service_principal" "aks" {
+  application_id = "${azuread_application.aks.application_id}"
+}
+
+# Create Service Principal password
+resource "azuread_service_principal_password" "aks" {
+  end_date             = "2299-12-30T23:59:00Z" # Forever
+  service_principal_id = "${azuread_service_principal.aks.id}"
+  value                = "${random_string.password.result}"
+}
+
+# Create Resource Group.
 module "resource_group" {
   source = "../resource_group"
 
@@ -6,6 +33,7 @@ module "resource_group" {
   tags     = "${var.tags}"
 }
 
+# Create Virtual Network (VNet).
 module "virtual_network" {
   source = "../virtual_network"
 
@@ -16,6 +44,7 @@ module "virtual_network" {
   tags                = "${var.tags}"
 }
 
+# Create AKS subnet.
 module "subnet" {
   source = "../subnet"
 
@@ -25,6 +54,15 @@ module "subnet" {
   virtual_network_name = "${module.virtual_network.name}"
 }
 
+# Grant AKS cluster access to use AKS subnet
+resource "azurerm_role_assignment" "aks" {
+  principal_id         = "${azuread_service_principal.aks.id}"
+  role_definition_name = "Network Contributor"
+  scope                = "${module.subnet.id}"
+}
+
+
+# Create managed Kubernetes cluster (AKS).
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "${var.aks_name}"
   location            = "${module.resource_group.location}"
@@ -56,8 +94,8 @@ resource "azurerm_kubernetes_cluster" "aks" {
   }
 
   service_principal {
-    client_id     = "${var.kubernetes_client_id}"
-    client_secret = "${var.kubernetes_client_secret}"
+    client_id     = "${azuread_application.aks.application_id}"
+    client_secret = "${azuread_service_principal_password.aks.value}"
   }
 
   network_profile {
