@@ -12,7 +12,7 @@ variable "storage_account_name" {
 }
 
 variable "account_tier" {
-  default     = "Standard"
+  default     = "Premium"
   description = "(Required) Defines the Tier to use for this storage account. Valid options are Standard and Premium. For FileStorage accounts only Premium is valid. Changing this forces a new resource to be created."
 }
 
