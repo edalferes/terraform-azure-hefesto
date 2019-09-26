@@ -36,6 +36,10 @@ output "service_principal_password" {
   value = "${random_string.password.result}"
 }
 
+output "service_principal_uri" {
+  value = "${azuread_application.aks.homepage}"
+}
+
 output "subscription_id" {
   value = "${data.azurerm_subscription.current.subscription_id}"
 }

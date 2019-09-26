@@ -21,6 +21,10 @@ output "service_principal_password" {
   value = "${module.aks.service_principal_password}"
 }
 
+output "service_principal_uri" {
+  value = "${module.aks.service_principal_uri}"
+}
+
 output "subscription_id" {
   value = "${module.aks.subscription_id}"
 }
