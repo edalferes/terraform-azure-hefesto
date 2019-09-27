@@ -6,6 +6,10 @@ variable "resource_group" {
   description = "(Required) The name of the resource group. Must be unique on your Azure subscription."
 }
 
+variable "resource_group_vnet" {
+  description = "(Required) The name of the resource group vnet. Must be unique on your Azure subscription."
+}
+
 variable "location" {
   description = "The Azure Region in which all resources in this example should be provisioned"
 }

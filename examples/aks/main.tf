@@ -3,6 +3,7 @@ module "aks" {
 
   aks_name       = "${var.aks_name}"
   resource_group = "${var.resource_group}"
+  resource_group_vnet = "${var.resource_group_vnet}"
   location       = "${var.location}"
 
   virtual_network_name = "${var.virtual_network_name}"

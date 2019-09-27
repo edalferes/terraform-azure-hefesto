@@ -8,6 +8,11 @@ variable "resource_group" {
   description = "(Required) The name of the resource group. Must be unique on your Azure subscription."
 }
 
+variable "resource_group_vnet" {
+  default     = "rg-terraform-test-vnet"
+  description = "(Required) The name of the resource group vnet. Must be unique on your Azure subscription."
+}
+
 variable "location" {
   default     = "eastus2"
   description = "The Azure Region in which all resources in this example should be provisioned"

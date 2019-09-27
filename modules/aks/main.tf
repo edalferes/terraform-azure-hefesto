@@ -33,13 +33,21 @@ module "resource_group" {
   tags     = "${var.tags}"
 }
 
+module "resource_group_vnet" {
+  source = "../resource_group"
+  
+  name     = "${var.resource_group_vnet}"
+  location = "${var.location}"
+  tags     = "${var.tags}"
+}
+
 # Create Virtual Network (VNet).
 module "virtual_network" {
   source = "../virtual_network"
 
   name                = "${var.virtual_network_name}"
-  resource_group_name = "${module.resource_group.name}"
-  location            = "${module.resource_group.location}"
+  resource_group_name = "${module.resource_group_vnet.name}"
+  location            = "${module.resource_group_vnet.location}"
   address_space       = "${var.virtual_network_address}"
   tags                = "${var.tags}"
 }
@@ -49,7 +57,7 @@ module "subnet" {
   source = "../subnet"
 
   name                 = "${var.subnet_name}"
-  resource_group_name  = "${module.resource_group.name}"
+  resource_group_name  = "${module.resource_group_vnet.name}"
   address_prefix       = "${var.subnet_address}"
   virtual_network_name = "${module.virtual_network.name}"
 }
@@ -64,6 +72,8 @@ resource "azurerm_role_assignment" "aks" {
 
 # Create managed Kubernetes cluster (AKS).
 resource "azurerm_kubernetes_cluster" "aks" {
+  depends_on = ["azuread_application.aks", "azuread_service_principal.aks", "azuread_service_principal_password.aks"]
+
   name                = "${var.aks_name}"
   location            = "${module.resource_group.location}"
   dns_prefix          = "${var.aks_name}"
