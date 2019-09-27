@@ -9,7 +9,7 @@ variable "resource_group" {
 }
 
 variable "resource_group_vnet" {
-  default     = "rg-terraform-test-vnet"
+  default     = "terraform-test-network"
   description = "(Required) The name of the resource group vnet. Must be unique on your Azure subscription."
 }
 
