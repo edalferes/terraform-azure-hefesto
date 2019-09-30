@@ -17,6 +17,11 @@ variable "connection_user" {
   default     = ""
   description = "(Required) User to connection to use provisioner."
 }
+
+variable "connection_password" {
+  default     = ""
+  description = "The password we should use for the connection. In some cases this is specified by the provider."
+}
 variable "connection_agent" {
   default     = false
   description = " (Required) Set to false to disable using ssh-agent to authenticate"
