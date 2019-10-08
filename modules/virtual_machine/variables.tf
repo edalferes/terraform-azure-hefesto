@@ -18,6 +18,18 @@ variable "network_interface_ids" {
   description = "(Required) Specifies the list of resource IDs for the network interfaces associated with the virtual machine."
 }
 
+variable "linux_machine" {
+  default = true
+  description = "(Required) Enable configuration linux machine."
+}
+
+variable "windows_machine" {
+  default = false
+   description = "(Required) Enable configuration windows machine."
+}
+
+
+
 variable "vm_size" {
   default     = "Standard_DS1_v2"
   description = "(Required) Specifies the size of the virtual machine."

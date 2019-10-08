@@ -25,12 +25,19 @@ resource "azurerm_virtual_machine" "virtual_machine" {
     admin_password = "${var.os_profile_admin_password}"
   }
   os_profile_linux_config {
+
+    count = "${var.linux_machine ? 1 : 0}"
+
     disable_password_authentication = "${var.os_profile_linux_config_disable_password}"
 
     ssh_keys {
       path     = "/home/${var.os_profile_admin_username}/.ssh/authorized_keys"
       key_data = "${var.ssh_keys_data}"
     }
+  }
+
+  os_profile_windows_config {
+    count = "${var.windows_machine ? 1 : 0}"
   }
 
   tags = "${var.tags}"
